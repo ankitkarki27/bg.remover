@@ -28,3 +28,4 @@ A simple and efficient web application that removes backgrounds from images usin
 - Tailwind CSS
 - JavaScript
 - Responsive Design
+

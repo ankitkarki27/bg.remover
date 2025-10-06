@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bg.remover - Remove Image Backgrounds Instantly</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .hero-gradient {
+            background: linear-gradient(135deg, #231924 0%, #2a1316 100%);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            transition: all 0.3s ease;
+        }
+    </style>
+</head>
+
+<body class="bg-slate-50">
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-2">
+                    <a href="#hero">
+                        <span class="text-xl font-bold text-slate-800">bg.remover</span>
+                    </a>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#features" class="text-slate-600 hover:text-slate-900 font-medium">Features</a>
+                    <a href="#how-it-works" class="text-slate-600 hover:text-slate-900 font-medium">How It Works</a>
+                    <a href="#faq" class="text-slate-600 hover:text-slate-900 font-medium">FAQ</a>
+                </div>
+                <a href="#hero"
+                    class="border border-black bg-black text-white px-6 py-2 rounded-lg font-medium hover:bg-white hover:text-black nline-block transition-colors duration-300">
+                    Get Started
+                </a>
+
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <!-- <section id="hero" class="hero-gradient text-white"> -->
+    <section id="hero" class="hero-gradient text-white">
+        <div class="container mx-auto px-6 py-16">
+            <div class="max-w-2xl mx-auto text-center">
+                <!-- Header -->
+                <h1 class="text-3xl text-wrap md:text-4xl font-semibold mb-2">
+        Free AI-powered bg removal
+      </h1> 
+       <p class="text-white/80 mb-8 text-lg">
+       AI removes your image background with perfect precision
+      </p>
+      
+                <!-- Upload Card -->
+                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
+                    <form action="/remove-bg" method="POST" enctype="multipart/form-data">
+                        <div class="mb-4">
+                            <input type="file" name="image" id="imageInput" accept="image/*" required class="hidden"
+                                onchange="updateFileName(this)" />
+                            <label for="imageInput"
+                                class="flex flex-col items-center justify-center w-full h-48 border-2 border-dashed border-white/40 rounded-xl cursor-pointer bg-white/5 hover:bg-white/10 transition-colors duration-200">
+                                <div class="text-center p-6">
+                                    <svg class="w-12 h-12 mx-auto mb-3 text-white/70" fill="none" stroke="currentColor"
+                                        viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                                    </svg>
+                                    <p class="text-white font-medium mb-1">Upload Image</p>
+                                    <p class="text-white/60 text-sm">PNG, JPG up to 10MB</p>
+                                    <p id="fileName" class="mt-2 text-white/80 text-sm font-medium hidden"></p>
+                                </div>
+                            </label>
+                        </div>
+
+                        <button type="submit"
+                            class="w-full bg-white text-gray-900 py-3 px-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors duration-200">
+                            Remove Background
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Features -->
+                <div class="grid grid-cols-2 gap-6 mt-8 text-white/70 text-sm">
+                    <div class="flex items-center justify-center gap-2">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                        </svg>
+                        <span>100% Free</span>
+                    </div>
+                    <div class="flex items-center justify-center gap-2">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M13 10V3L4 14h7v7l9-11h-7z" />
+                        </svg>
+                        <span>Instant Results</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-16 bg-white">
+        <div class="container mx-auto px-4 sm:px-6">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Professional Background Removal</h2>
+                <p class="text-lg text-gray-600">Enterprise-grade AI technology trusted by professionals worldwide</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                <div class="text-center group">
+                    <div
+                        class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-4 group-hover:bg-blue-600 transition-colors duration-200">
+                        <svg class="w-6 h-6 text-blue-600 group-hover:text-white transition-colors" fill="none"
+                            stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M13 10V3L4 14h7v7l9-11h-7z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-900 mb-2">Lightning Fast</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">Process high-resolution images in seconds with
+                        optimized AI algorithms</p>
+                </div>
+
+                <div class="text-center group">
+                    <div
+                        class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4 group-hover:bg-green-600 transition-colors duration-200">
+                        <svg class="w-6 h-6 text-green-600 group-hover:text-white transition-colors" fill="none"
+                            stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-900 mb-2">Precision Quality</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">Crystal-clear edge detection for professional-grade
+                        results</p>
+                </div>
+
+                <div class="text-center group">
+                    <div
+                        class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mx-auto mb-4 group-hover:bg-purple-600 transition-colors duration-200">
+                        <svg class="w-6 h-6 text-purple-600 group-hover:text-white transition-colors" fill="none"
+                            stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-900 mb-2">Secure & Private</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">Your images are automatically deleted after
+                        processing</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section id="how-it-works" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4 sm:px-6">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Simple Three-Step Process</h2>
+                <p class="text-lg text-gray-600">Get professional results in under 30 seconds</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+                <div class="text-center">
+                    <div class="relative mb-6">
+                        <div
+                            class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto text-white font-semibold text-lg">
+                            1
+                        </div>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-900 mb-3">Upload Image</h3>
+                    <p class="text-gray-600 text-sm">Select your image or drag and drop</p>
+                </div>
+
+                <div class="text-center">
+                    <div class="relative mb-6">
+                        <div
+                            class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto text-white font-semibold text-lg">
+                            2
+                        </div>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-900 mb-3">AI Processing</h3>
+                    <p class="text-gray-600 text-sm">Automatic background removal</p>
+                </div>
+
+                <div class="text-center">
+                    <div class="relative mb-6">
+                        <div
+                            class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto text-white font-semibold text-lg">
+                            3
+                        </div>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-900 mb-3">Download</h3>
+                    <p class="text-gray-600 text-sm">Save with transparent background</p>
+                </div>
+            </div>
+
+            <!-- Trust Indicators -->
+            <div class="mt-16 text-center">
+                <p class="text-gray-500 text-sm uppercase tracking-wider mb-6">TRUSTED BY PROFESSIONALS</p>
+                <div class="flex flex-wrap justify-center items-center gap-8 opacity-60">
+                    <div class="text-gray-400 font-semibold">Photographers</div>
+                    <div class="text-gray-400 font-semibold">E-commerce</div>
+                    <div class="text-gray-400 font-semibold">Designers</div>
+                    <div class="text-gray-400 font-semibold">Marketers</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-16 bg-white">
+        <div class="container mx-auto px-4 sm:px-6 max-w-4xl">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
+                <p class="text-lg text-gray-600">Get answers to common questions about our service</p>
+            </div>
+
+            <div class="space-y-4">
+                <div class="border border-gray-200 rounded-lg hover:border-gray-300 transition-colors duration-200">
+                    <button class="faq-question w-full text-left px-6 py-4 flex justify-between items-center">
+                        <h3 class="text-lg font-semibold text-gray-900">Is this service completely free?</h3>
+                        <svg class="w-5 h-5 text-gray-500 transform transition-transform duration-200" fill="none"
+                            stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div class="faq-answer px-6 pb-4 hidden">
+                        <p class="text-gray-600 leading-relaxed">Yes, our background removal service is completely free
+                            with no hidden costs, watermarks, or usage limits. We believe in providing
+                            professional-grade tools accessible to everyone.</p>
+                    </div>
+                </div>
+
+                <div class="border border-gray-200 rounded-lg hover:border-gray-300 transition-colors duration-200">
+                    <button class="faq-question w-full text-left px-6 py-4 flex justify-between items-center">
+                        <h3 class="text-lg font-semibold text-gray-900">What image formats do you support?</h3>
+                        <svg class="w-5 h-5 text-gray-500 transform transition-transform duration-200" fill="none"
+                            stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div class="faq-answer px-6 pb-4 hidden">
+                        <p class="text-gray-600 leading-relaxed">We support all major image formats including PNG, JPG,
+                            and JPEG. Processed images are delivered in PNG format with transparent background,
+                            maintaining the highest quality for professional use.</p>
+                    </div>
+                </div>
+
+                <div class="border border-gray-200 rounded-lg hover:border-gray-300 transition-colors duration-200">
+                    <button class="faq-question w-full text-left px-6 py-4 flex justify-between items-center">
+                        <h3 class="text-lg font-semibold text-gray-900">How do you handle my data and privacy?</h3>
+                        <svg class="w-5 h-5 text-gray-500 transform transition-transform duration-200" fill="none"
+                            stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div class="faq-answer px-6 pb-4 hidden">
+                        <p class="text-gray-600 leading-relaxed">Your privacy is our priority. All images are processed
+                            in real-time and automatically deleted from our servers immediately after processing. We
+                            never store, share, or use your images for any other purpose.</p>
+                    </div>
+                </div>
+
+                <div class="border border-gray-200 rounded-lg hover:border-gray-300 transition-colors duration-200">
+                    <button class="faq-question w-full text-left px-6 py-4 flex justify-between items-center">
+                        <h3 class="text-lg font-semibold text-gray-900">What are the file size limitations?</h3>
+                        <svg class="w-5 h-5 text-gray-500 transform transition-transform duration-200" fill="none"
+                            stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div class="faq-answer px-6 pb-4 hidden">
+                        <p class="text-gray-600 leading-relaxed">We support images up to 10MB in size. For optimal
+                            performance and quality, we recommend using images with dimensions between 500px and 2000px
+                            on the longest side.</p>
+                    </div>
+                </div>
+
+                <div class="border border-gray-200 rounded-lg hover:border-gray-300 transition-colors duration-200">
+                    <button class="faq-question w-full text-left px-6 py-4 flex justify-between items-center">
+                        <h3 class="text-lg font-semibold text-gray-900">What's the quality of the background removal?
+                        </h3>
+                        <svg class="w-5 h-5 text-gray-500 transform transition-transform duration-200" fill="none"
+                            stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div class="faq-answer px-6 pb-4 hidden">
+                        <p class="text-gray-600 leading-relaxed">Our AI delivers professional-grade results with precise
+                            edge detection, handling complex elements like hair and transparent objects. The output
+                            maintains original image quality with clean, transparent backgrounds ready for commercial
+                            use.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const faqQuestions = document.querySelectorAll('.faq-question');
+
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', function () {
+                    const answer = this.nextElementSibling;
+                    const icon = this.querySelector('svg');
+
+                    // Toggle current answer
+                    answer.classList.toggle('hidden');
+                    icon.classList.toggle('rotate-180');
+
+                    // Close other open FAQs
+                    faqQuestions.forEach(otherQuestion => {
+                        if (otherQuestion !== question) {
+                            const otherAnswer = otherQuestion.nextElementSibling;
+                            const otherIcon = otherQuestion.querySelector('svg');
+                            otherAnswer.classList.add('hidden');
+                            otherIcon.classList.remove('rotate-180');
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4 sm:px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="flex items-center space-x-3 mb-4 md:mb-0">
+
+                    <span class="text-xl font-semibold">bg.remover</span>
+                </div>
+
+                <div class="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-8 text-sm">
+                    <a href="#features" class="text-gray-400 hover:text-white transition-colors">Features</a>
+                    <a href="#how-it-works" class="text-gray-400 hover:text-white transition-colors">How It Works</a>
+                    <a href="#faq" class="text-gray-400 hover:text-white transition-colors">FAQ</a>
+                    <a href="mailto:support@bg.remover"
+                        class="text-gray-400 hover:text-white transition-colors">Support</a>
+                </div>
+
+                <div class="text-gray-400 text-sm mt-4 md:mt-0">
+                    &copy; 2024 bg.remover. All rights reserved.
+                </div>
+            </div>
+
+            <!-- Bottom notice -->
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center">
+                <p class="text-gray-500 text-xs">
+                    Powered by advanced AI technology • Images processed securely and deleted immediately
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateFileName(input) {
+            const fileName = document.getElementById('fileName');
+            if (input.files && input.files[0]) {
+                fileName.textContent = 'File: ' + input.files[0].name;
+                fileName.classList.remove('hidden');
+            } else {
+                fileName.classList.add('hidden');
+            }
+        }
+
+        // Enhanced drag and drop functionality
+        const label = document.querySelector('label[for="imageInput"]');
+
+        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+            label.addEventListener(eventName, preventDefaults, false);
+        });
+
+        function preventDefaults(e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+
+        ['dragenter', 'dragover'].forEach(eventName => {
+            label.addEventListener(eventName, () => {
+                label.classList.add('border-yellow-300', 'bg-white/20');
+            }, false);
+        });
+
+        ['dragleave', 'drop'].forEach(eventName => {
+            label.addEventListener(eventName, () => {
+                label.classList.remove('border-yellow-300', 'bg-white/20');
+            }, false);
+        });
+
+        label.addEventListener('drop', handleDrop, false);
+
+        function handleDrop(e) {
+            const dt = e.dataTransfer;
+            const files = dt.files;
+            document.getElementById('imageInput').files = files;
+            updateFileName(document.getElementById('imageInput'));
+        }
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

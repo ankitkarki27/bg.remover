@@ -53,4 +53,5 @@ Free for personal and commercial use.
 
 ## Support
 
-For support, contact: support@bg.remover
+For support, contact: ankitkarki8088@gmail.com
+
